@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press Core Autoloader
+Name:    Dev4Press\v40\Core\Quick\BP
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,29 +24,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_40' ) ) {
-	function d4p_core_library_autoloader_40( $class ) {
-		$path = dirname( __FILE__ ) . '/';
-		$base = 'Dev4Press\\v40\\';
+namespace Dev4Press\v40\Core\Quick;
 
-		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
-			$clean = substr( $class, strlen( $base ) );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-			$parts = explode( '\\', $clean );
-
-			$class_name = $parts[ count( $parts ) - 1 ];
-			unset( $parts[ count( $parts ) - 1 ] );
-
-			$class_namespace = join( '/', $parts );
-			$class_namespace = strtolower( $class_namespace );
-
-			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
-
-			if ( file_exists( $path ) ) {
-				include( $path );
-			}
+class BP {
+	public static function is_active( $min_version = '7.0' ) : bool {
+		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) && function_exists( 'bp_get_version' ) ) {
+			return version_compare( bp_get_version(), $min_version, '>=' );
+		} else {
+			return false;
 		}
 	}
-
-	spl_autoload_register( 'd4p_core_library_autoloader_40' );
 }

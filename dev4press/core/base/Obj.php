@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press Core Autoloader
+Name:    Dev4Press\v40\Core\Base\Obj
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,29 +24,34 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_40' ) ) {
-	function d4p_core_library_autoloader_40( $class ) {
-		$path = dirname( __FILE__ ) . '/';
-		$base = 'Dev4Press\\v40\\';
+namespace Dev4Press\v40\Core\Base;
 
-		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
-			$clean = substr( $class, strlen( $base ) );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-			$parts = explode( '\\', $clean );
+class Obj {
+	function __construct( $args = array() ) {
+		if ( is_array( $args ) && ! empty( $args ) ) {
+			$this->from_array( $args );
+		}
+	}
 
-			$class_name = $parts[ count( $parts ) - 1 ];
-			unset( $parts[ count( $parts ) - 1 ] );
-
-			$class_namespace = join( '/', $parts );
-			$class_namespace = strtolower( $class_namespace );
-
-			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
-
-			if ( file_exists( $path ) ) {
-				include( $path );
+	public function __clone() {
+		foreach ( $this as $key => $val ) {
+			if ( is_object( $val ) || ( is_array( $val ) ) ) {
+				$this->{$key} = unserialize( serialize( $val ) );
 			}
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_40' );
+	public function to_array() : array {
+		return (array) $this;
+	}
+
+	public function from_array( $args ) {
+		foreach ( $args as $key => $value ) {
+			$this->$key = $value;
+		}
+	}
 }
