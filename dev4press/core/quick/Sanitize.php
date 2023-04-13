@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Quick\Sanitize
-Version: v4.0
+Name:    Dev4Press\v41\Core\Quick\Sanitize
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Quick;
+namespace Dev4Press\v41\Core\Quick;
 
 use DateTime;
 
@@ -67,6 +67,10 @@ class Sanitize {
 
 	public static function email( $email ) : string {
 		return sanitize_email( $email );
+	}
+
+	public static function url( $url ) : string {
+		return sanitize_url( $url );
 	}
 
 	public static function basic( string $text, bool $strip_shortcodes = true ) : string {
@@ -176,14 +180,14 @@ class Sanitize {
 	}
 
 	public static function _get_slug( $name, $default ) {
-		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default;
 	}
 
 	public static function _get_basic( $name, $default ) {
-		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::basic( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? Sanitize::basic( $_GET[ $name ] ) : $default;
 	}
 
 	public static function _get_absint( $name, $default ) {
-		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::absint( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? Sanitize::absint( $_GET[ $name ] ) : $default;
 	}
 }

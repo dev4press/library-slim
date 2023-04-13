@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Quick\WP
-Version: v4.0
+Name:    Dev4Press\v41\Core\Quick\WP
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Quick;
+namespace Dev4Press\v41\Core\Quick;
 
-use Dev4Press\v40\Core\Helpers\Error;
+use Dev4Press\v41\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
@@ -604,7 +604,7 @@ class WPR {
 				$hash = md5( serialize( $hash ) );
 			}
 
-			if ( isset( $crons[ $timestamp ] ) && isset( $crons[ $timestamp ][ $hook ] ) && isset( $crons[ $timestamp ][ $hook ][ $hash ] ) ) {
+			if ( isset( $crons[ $timestamp ][ $hook ][ $hash ] ) ) {
 				unset( $crons[ $timestamp ][ $hook ][ $hash ] );
 				$save = true;
 

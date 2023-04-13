@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Quick\Misc
-Version: v4.0
+Name:    Dev4Press\v41\Core\Quick\Misc
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Quick;
+namespace Dev4Press\v41\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -69,5 +69,27 @@ class Misc {
 		}
 
 		return $ini;
+	}
+
+	public static function hex_to_rgba( string $color, string $default = '0,0,0' ) : string {
+		if ( empty( $color ) ) {
+			return $default;
+		}
+
+		if ( $color[0] == '#' ) {
+			$color = substr( $color, 1 );
+		}
+
+		if ( strlen( $color ) == 6 ) {
+			$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+		} else if ( strlen( $color ) == 3 ) {
+			$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+		} else {
+			return $default;
+		}
+
+		$rgb = array_map( 'hexdec', $hex );
+
+		return implode( ',', $rgb );
 	}
 }

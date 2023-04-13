@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Scope
-Version: v4.0
+Name:    Dev4Press\v41\Core\Scope
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core;
+namespace Dev4Press\v41\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -68,7 +68,7 @@ class Scope {
 	 */
 	private $blog_id;
 
-	function __construct() {
+	public function __construct() {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 

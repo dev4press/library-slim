@@ -1,8 +1,8 @@
 # Dev4Press Library Slim
 
-* Version: v4.0
-* Build:   3920
-* Release: 2023.02.13.
+* Version: v4.1
+* Build:   410
+* Release: 2023.04.24.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

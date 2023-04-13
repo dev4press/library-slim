@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\WordPress\Media\ImageToMediaLibrary
-Version: v4.0
+Name:    Dev4Press\v41\WordPress\Media\ImageToMediaLibrary
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Media;
+namespace Dev4Press\v41\WordPress\Media;
 
 use WP_Error;
 
@@ -134,7 +134,7 @@ trait ImageToMediaLibrary {
 
 		$this->file = $this->name . '.' . $this->ext;
 
-		if ( isset( $args['mimes'] ) && is_array( $args['mimes'] ) && ! empty( $args['mimes'] ) ) {
+		if ( is_array( $args['mimes'] ) && ! empty( $args['mimes'] ) ) {
 			$this->_mimes = $args['mimes'];
 		}
 
