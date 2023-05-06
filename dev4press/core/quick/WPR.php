@@ -664,4 +664,22 @@ class WPR {
 
 		return preg_match( "/200/", $headers[0] ) === 1;
 	}
+
+	public static function get_user_display_name( $user_id = 0 ) : string {
+		if ( $user_id == 0 ) {
+			$user_id = get_current_user_id();
+		}
+
+		if ( $user_id > 0 ) {
+			$author_name = get_the_author_meta( 'display_name', $user_id );
+
+			if ( empty( $author_name ) ) {
+				$author_name = get_the_author_meta( 'user_login', $user_id );
+			}
+
+			return $author_name;
+		}
+
+		return '';
+	}
 }

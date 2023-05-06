@@ -127,21 +127,12 @@ class BBP {
 		return WPR::is_current_user_roles( bbp_get_keymaster_role() );
 	}
 
-	public static function get_user_display_name( $user_id = 0 ) : string {
-		if ( $user_id == 0 ) {
-			$user_id = bbp_get_current_user_id();
+	/**
+	 * @depecated since 4.1, to be removed in 4.2. Use WPR::get_user_display_name() instead.
+	 */
+	public static function get_user_display_name( int $user_id = 0 ) : string {
+		_deprecated_function( __METHOD__, '4.1', 'WPR::get_user_display_name' );
 
-			if ( $user_id > 0 ) {
-				$author_name = get_the_author_meta( 'display_name', $user_id );
-
-				if ( empty( $author_name ) ) {
-					$author_name = get_the_author_meta( 'user_login', $user_id );
-				}
-
-				return $author_name;
-			}
-		}
-
-		return '';
+		return WPR::get_user_display_name( $user_id );
 	}
 }

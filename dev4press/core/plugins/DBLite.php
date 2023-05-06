@@ -449,23 +449,23 @@ abstract class DBLite {
 	}
 
 	/**
+	 * @return float|int|mixed|null
 	 * @deprecated Since 4.0, to be removed in 4.2
 	 *
-	 * @return float|int|mixed|null
 	 */
 	public function gmt_offset() {
-		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->offset()');
+		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->offset()' );
 
 		return DateTime::instance()->offset();
 	}
 
 	/**
+	 * @return string
 	 * @deprecated Since 4.0, to be removed in 4.2
 	 *
-	 * @return string
 	 */
 	public function get_offset_string() : string {
-		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->formatted_offset()');
+		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->formatted_offset()' );
 
 		return DateTime::instance()->formatted_offset();
 	}
